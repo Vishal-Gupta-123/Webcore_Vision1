@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About FlowSuite</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            DEFAULT: '#2150F4',
+            dark: '#0B1B4D',
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .star::before { content: "★"; }
+
+  /* ---- Infinite logo marquee ---- */
+  .marquee {
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---- Card hover polish ---- */
+  .team-card, .testimonial-card {
+    will-change: transform;
+  }
+</style>
+</head>
+<body class="bg-white text-slate-900">
+
+<!-- ===================== HEADER / HERO ===================== -->
+<header class="relative overflow-hidden bg-gradient-to-br from-[#0B1B4D] via-[#1B3FD6] to-[#3D6BFF]">
+  <nav class="relative z-10 max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
+    <a href="#" class="flex items-center gap-2 text-white font-bold text-lg">
+      <span class="text-2xl"><img src="https://framerusercontent.com/images/kq857rH86cqGviBRliG7ERQy3MU.png?width=112&height=112" alt="FlowSuite Logo" class="w-8 h-8">
+      </span> FlowSuite</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-sm text-white/90 font-medium">
+      <li><a href="#" class="hover:text-white">Home</a></li>
+      <li><a href="#" class="hover:text-white">About</a></li>
+      <li><a href="#" class="hover:text-white">Features</a></li>
+      <li><a href="#" class="hover:text-white">Pricing</a></li>
+      <li><a href="#" class="hover:text-white">Blogs</a></li>
+    </ul>
+    <a href="#" class="bg-white text-slate-900 text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-1 hover:bg-slate-100 transition">
+      Get started <span>↗</span>
+    </a>
+    <button id="menuBtn" class="md:hidden text-white text-2xl">☰</button>
+  </nav>
+  <div id="mobileMenu" class="hidden md:hidden relative z-10 px-6 pb-6">
+    <ul class="flex flex-col gap-3 text-white/90 font-medium">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Blogs</a></li>
+    </ul>
+  </div>
+
+  <div class="relative z-10 max-w-3xl mx-auto text-center px-6 pt-10 pb-32">
+    <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">About FlowSuite</h1>
+    <p class="mt-4 text-white/80 text-base sm:text-lg">
+      Discover how FlowSuite empowers teams with smarter tools, workflows, and faster results.
+    </p>
+  </div>
+
+  <!-- decorative grid lines -->
+  <svg class="absolute bottom-0 left-0 w-full h-32 opacity-20" viewBox="0 0 1200 100" preserveAspectRatio="none">
+    <path d="M0 80 Q300 20 600 80 T1200 80" stroke="white" stroke-width="1" fill="none"/>
+  </svg>
+</header>
+
+<!-- ===================== INTRO ===================== -->
+<section class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-start">
+  <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+    Built to Simplify and Build Customer Relationships
+  </h2>
+  <div>
+    <p class="text-slate-500 leading-relaxed">
+      Flowsuite is designed to help businesses manage their customers, teams, and workflows
+      with total clarity. We believe that great customer relationships are built on organization,
+      speed, and meaningful data — and Flowsuite brings all three together in one powerful platform.
+    </p>
+    <p class="text-slate-500 leading-relaxed mt-4">
+      Our mission is to make crm simple, flexible, and genuinely useful.
+      Whether you're a startup managing your first leads.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="#" class="bg-yellow-300 text-slate-900 text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-1 hover:bg-yellow-400 transition">
+        ↗ Get this Template Free
+      </a>
+      <a href="#" class="bg-green-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-1 hover:bg-green-800 transition">
+        🗐 Explore More Templates
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOGO STRIP (infinite loop) ===================== -->
+<section class="max-w-7xl mx-auto px-6 pb-16">
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- Set A -->
+      <span class="font-semibold italic text-lg text-slate-500 shrink-0">Brandify</span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">◎ Logoipsum<br><span class="text-xs">Academy</span></span>
+      <span class="font-bold text-xl text-slate-500 shrink-0">L.Logo</span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">⊙ Logoipsum<br><span class="text-xs">Foundatior</span></span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">Logosum</span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">LOGOIPSUM</span>
+      <span class="font-semibold italic text-lg text-slate-500 shrink-0">Brandify</span>
+      <!-- Set B (duplicate for seamless loop) -->
+      <span class="font-semibold italic text-lg text-slate-500 shrink-0">Brandify</span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">◎ Logoipsum<br><span class="text-xs">Academy</span></span>
+      <span class="font-bold text-xl text-slate-500 shrink-0">L.Logo</span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">⊙ Logoipsum<br><span class="text-xs">Foundatior</span></span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">Logosum</span>
+      <span class="font-semibold text-lg text-slate-500 shrink-0">LOGOIPSUM</span>
+      <span class="font-semibold italic text-lg text-slate-500 shrink-0">Brandify</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HERO IMAGE ===================== -->
+<section class="max-w-7xl mx-auto px-6 pb-20">
+  <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80&auto=format&fit=crop"
+       alt="Team putting hands together"
+       class="w-full h-[420px] object-cover rounded-2xl">
+</section>
+
+<!-- ===================== STATS (looping count-up) ===================== -->
+<section class="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-2 md:grid-cols-4 gap-10 text-center md:text-left">
+  <div>
+    <p class="text-4xl font-extrabold stat-num" data-target="35" data-suffix="%">0%</p>
+    <p class="text-slate-400 text-sm mt-1">Completion accuracy</p>
+  </div>
+  <div>
+    <p class="text-4xl font-extrabold stat-num" data-target="41" data-suffix="%">0%</p>
+    <p class="text-slate-400 text-sm mt-1">Reduction in workflow</p>
+  </div>
+  <div>
+    <p class="text-4xl font-extrabold stat-num" data-target="69.1" data-decimals="1" data-suffix="%">0%</p>
+    <p class="text-slate-400 text-sm mt-1">Uptime reliability</p>
+  </div>
+  <div>
+    <p class="text-4xl font-extrabold stat-num" data-target="3" data-suffix="%">0%</p>
+    <p class="text-slate-400 text-sm mt-1">Satisfaction score</p>
+  </div>
+</section>
+
+<!-- ===================== BENEFITS ===================== -->
+<section class="max-w-5xl mx-auto px-6 pb-20 text-center">
+  <p class="flex items-center justify-center gap-2 text-brand font-semibold text-sm">★ BENEFITS</p>
+  <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Built from real team<br>challenges and needs</h2>
+  <p class="text-slate-500 mt-4 max-w-xl mx-auto">
+    Designed to solve real team challenges and meet your everyday needs.
+  </p>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 pb-24 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <div class="benefit-card group border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-brand/30 cursor-pointer">
+    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">💡</div>
+    <h3 class="font-semibold text-lg">Simplicity First</h3>
+    <p class="text-slate-500 text-sm mt-2">We believe powerful software shouldn't be complicated. Every feature is clean.</p>
+  </div>
+  <div class="benefit-card group border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-brand/30 cursor-pointer">
+    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">🧭</div>
+    <h3 class="font-semibold text-lg">Customer-Driven Thinking</h3>
+    <p class="text-slate-500 text-sm mt-2">We embrace a fully flexible work model that lets you design schedule around your life.</p>
+  </div>
+  <div class="benefit-card group border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-brand/30 cursor-pointer">
+    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">📱</div>
+    <h3 class="font-semibold text-lg">Transparency at Every Step</h3>
+    <p class="text-slate-500 text-sm mt-2">We share updates openly, explain changes clearly, and make sure our users always know.</p>
+  </div>
+  <div class="benefit-card group border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-brand/30 cursor-pointer">
+    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">⚙️</div>
+    <h3 class="font-semibold text-lg">Innovation with Purpose</h3>
+    <p class="text-slate-500 text-sm mt-2">We don't innovate for the sake of being flashy — we create solutions that actually matter.</p>
+  </div>
+  <div class="benefit-card group border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-brand/30 cursor-pointer">
+    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">🛡️</div>
+    <h3 class="font-semibold text-lg">Reliability You Can Trust</h3>
+    <p class="text-slate-500 text-sm mt-2">A crm is the backbone of customer operations — we take that seriously.</p>
+  </div>
+  <div class="benefit-card group border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-brand/30 cursor-pointer">
+    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">❤️</div>
+    <h3 class="font-semibold text-lg">Empathy for Users</h3>
+    <p class="text-slate-500 text-sm mt-2">Behind every click is a real human trying to get work done. We design with empathy.</p>
+  </div>
+</section>
+
+<!-- ===================== TEAM ALIGNMENT ===================== -->
+<section class="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-2 gap-12 items-center">
+  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop"
+       alt="Team collaborating around a table"
+       class="rounded-2xl w-full h-[420px] object-cover">
+  <div>
+    <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">Teams Perform Best When Stays Aligned.</h2>
+    <p class="text-slate-500 mt-4 leading-relaxed">
+      Flowsuite offers shared data, internal notes, activity logs, and smart notifications that
+      keep everyone on the same page. Whether working in-office or remotely, your team
+      collaborates seamlessly.
+    </p>
+    <div class="flex gap-12 mt-8">
+      <div>
+        <p class="text-3xl font-extrabold stat-num" data-target="45" data-suffix="%">0%</p>
+        <p class="text-slate-400 text-sm">Faster Lead Response</p>
+      </div>
+      <div>
+        <p class="text-3xl font-extrabold stat-num" data-target="45" data-suffix="%">0%</p>
+        <p class="text-slate-400 text-sm">Boost In Sales Productivity</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEAM MEMBERS ===================== -->
+<section class="max-w-5xl mx-auto px-6 pb-20 text-center">
+  <p class="flex items-center justify-center gap-2 text-brand font-semibold text-sm">★ OUR TEAM</p>
+  <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">The People Behind Flowsuite</h2>
+  <p class="text-slate-500 mt-4 max-w-xl mx-auto">
+    Meet the passionate team driving innovation and success at Flowsuite.
+  </p>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 pb-24 grid sm:grid-cols-3 gap-6">
+  <div class="team-card group rounded-2xl overflow-hidden bg-slate-50 transition-shadow duration-300 hover:shadow-xl">
+    <div class="relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop"
+           alt="Alex Johnson" class="w-full h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+        <div class="flex gap-3 translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">𝕏</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">in</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">✉</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-4">
+      <p class="font-semibold">Alex Johnson</p>
+      <p class="text-slate-400 text-sm">Founder &amp; CEO</p>
+    </div>
+  </div>
+  <div class="team-card group rounded-2xl overflow-hidden bg-slate-50 transition-shadow duration-300 hover:shadow-xl">
+    <div class="relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600&q=80&auto=format&fit=crop"
+           alt="Maya Lee" class="w-full h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+        <div class="flex gap-3 translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">𝕏</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">in</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">✉</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-4">
+      <p class="font-semibold">Maya Lee</p>
+      <p class="text-slate-400 text-sm">Head of Product Design</p>
+    </div>
+  </div>
+  <div class="team-card group rounded-2xl overflow-hidden bg-slate-50 transition-shadow duration-300 hover:shadow-xl">
+    <div class="relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&auto=format&fit=crop"
+           alt="Ryan Carter" class="w-full h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+        <div class="flex gap-3 translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">𝕏</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">in</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-slate-900 text-xs">✉</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-4">
+      <p class="font-semibold">Ryan Carter</p>
+      <p class="text-slate-400 text-sm">Customer Manager</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="max-w-5xl mx-auto px-6 pb-12 text-center">
+  <p class="flex items-center justify-center gap-2 text-brand font-semibold text-sm">★ TESTIMONIALS</p>
+  <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Trusted by Teams Worldwide</h2>
+  <p class="text-slate-500 mt-4 max-w-xl mx-auto">
+    Choose a plan that fits your workflow, budget, and growth goals—no hidden charges.
+  </p>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 pb-24 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  <div class="testimonial-card bg-slate-900 text-white rounded-2xl p-6 row-span-2 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+    <div>
+      <p class="text-yellow-300 mb-3">★★★★<span class="text-slate-500">★</span></p>
+      <p class="text-sm text-slate-300 leading-relaxed">
+        "This CRM transformed the way our team manages customers and opportunities.
+        Within only three months of consistent use, we achieved a remarkable 35% increase
+        in sales, driven by smarter workflows and improved tracking."
+      </p>
+    </div>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=12" class="w-10 h-10 rounded-full" alt="Alex Jordan">
+      <div>
+        <p class="font-semibold text-sm">Alex Jordan</p>
+        <p class="text-slate-400 text-xs">Content Strategist</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-card border border-slate-200 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-brand/30 cursor-pointer">
+    <p class="text-sm text-slate-600 leading-relaxed">
+      "Our team finally stopped juggling countless spreadsheets and switched to a
+      cleaner, more efficient workflow solution."
+    </p>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=33" class="w-10 h-10 rounded-full" alt="Daniel Cooper">
+      <div>
+        <p class="font-semibold text-sm">Daniel Cooper</p>
+        <p class="text-slate-400 text-xs">Project Coordinator</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-card border border-slate-200 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-brand/30 cursor-pointer">
+    <p class="text-sm text-slate-600 leading-relaxed">
+      "We moved away from messy manual processes and embraced a smoother workflow
+      that keeps our whole team aligned and efficient."
+    </p>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=15" class="w-10 h-10 rounded-full" alt="Alison Thomas">
+      <div>
+        <p class="font-semibold text-sm">Alison Thomas</p>
+        <p class="text-slate-400 text-xs">Team Operations Lead</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-card border border-slate-200 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-brand/30 cursor-pointer">
+    <p class="text-sm text-slate-600 leading-relaxed">
+      "In just one day, our whole team was seamlessly collaborating and managing
+      projects through a single dashboard."
+    </p>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=22" class="w-10 h-10 rounded-full" alt="Liam Parker">
+      <div>
+        <p class="font-semibold text-sm">Liam Parker</p>
+        <p class="text-slate-400 text-xs">Productivity Lead</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-card bg-brand text-white rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+    <p class="text-yellow-300 mb-2">★★★★<span class="text-white/40">★</span></p>
+    <p class="text-sm text-white/90 leading-relaxed">
+      CRM CRD is a modern CRM platform designed to be simple, intelligent, and enjoyable
+      to use. It streamlines daily tasks, organizes customer interactions, and helps teams
+      work more efficiently while making the entire experience smoother and more engaging
+      for everyone.
+    </p>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=45" class="w-10 h-10 rounded-full" alt="Maya Rahman">
+      <div>
+        <p class="font-semibold text-sm">Maya Rahman</p>
+        <p class="text-white/70 text-xs">Business Process Analyst</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-card border border-slate-200 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-brand/30 cursor-pointer">
+    <p class="text-sm text-slate-600 leading-relaxed">
+      "Within just 60 seconds, our complete CRM system was set up and ready for
+      immediate use."
+    </p>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=51" class="w-10 h-10 rounded-full" alt="Alex Jofer">
+      <div>
+        <p class="font-semibold text-sm">Alex Jofer</p>
+        <p class="text-slate-400 text-xs">Systems Administrator</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-card border border-slate-200 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-brand/30 cursor-pointer">
+    <p class="text-sm text-slate-600 leading-relaxed">
+      "Our customer response time has improved by 40%, us to provide faster, more
+      efficient support."
+    </p>
+    <div class="flex items-center gap-3 mt-6">
+      <img src="https://i.pravatar.cc/80?img=60" class="w-10 h-10 rounded-full" alt="Ethan Ross">
+      <div>
+        <p class="font-semibold text-sm">Ethan Ross</p>
+        <p class="text-slate-400 text-xs">Operations Manager</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="bg-black text-white">
+  <div class="max-w-7xl mx-auto px-6 py-20 text-center">
+    <p class="inline-flex items-center gap-2 border border-white/30 rounded-full px-4 py-1 text-xs text-white/70">
+      ✦ Enterprise-Grade Relationship Management
+    </p>
+    <h2 class="text-3xl sm:text-4xl font-extrabold mt-6">Build Stronger Relation<br>Close More Deals.</h2>
+    <p class="text-white/60 mt-4 max-w-lg mx-auto">
+      Create realistic, expressive, and natural voices in seconds powered by advanced AI
+      technology. Create realistic, expressive, and natural voices in secon.
+    </p>
+    <a href="#" id="startFreeBtn" class="inline-flex items-center gap-1 bg-brand hover:bg-blue-700 transition text-white font-semibold px-6 py-3 rounded-full mt-8">
+      Start Free Today ↗
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-white border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <div>
+      <a href="#" class="flex items-center gap-2 font-bold text-xl">✳️ FlowSuite</a>
+      <p class="text-slate-500 text-sm mt-4 max-w-xs">
+        Realistic, expressive, and natural voices in seconds powered by advanced AI technology.
+      </p>
+      <div class="flex gap-3 mt-5 text-slate-500">
+        <a href="#" aria-label="X">𝕏</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">📷</a>
+      </div>
+    </div>
+    <div>
+      <p class="font-semibold mb-4">Main Pages</p>
+      <ul class="space-y-2 text-sm text-slate-500">
+        <li><a href="#" class="hover:text-brand">Home</a></li>
+        <li><a href="#" class="text-brand font-medium">About</a></li>
+        <li><a href="#" class="hover:text-brand">Features</a></li>
+        <li><a href="#" class="hover:text-brand">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold mb-4">Inner pages</p>
+      <ul class="space-y-2 text-sm text-slate-500">
+        <li><a href="#" class="hover:text-brand">Blogs</a></li>
+        <li><a href="#" class="hover:text-brand">Career</a></li>
+        <li><a href="#" class="hover:text-brand">Integrations</a></li>
+        <li><a href="#" class="hover:text-brand">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold mb-4">Legal pages</p>
+      <ul class="space-y-2 text-sm text-slate-500">
+        <li><a href="#" class="hover:text-brand">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-brand">Terms &amp; Conditions</a></li>
+        <li><a href="#" class="hover:text-brand">404</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 pb-6">
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between border-t border-slate-100 pt-6">
+      <form id="subscribeForm" class="flex w-full sm:w-auto gap-2">
+        <input type="email" required placeholder="Enter your Email"
+               class="border border-slate-300 rounded-full px-4 py-2 text-sm w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-brand">
+        <button type="submit" class="bg-brand text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-blue-700 transition">
+          Subscribe
+        </button>
+      </form>
+      <p class="text-slate-400 text-xs">©FlowSuite. 2026 All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== JS ===================== -->
+<script>
+  // Mobile menu toggle
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+
+  // Subscribe form feedback (frontend only, no backend)
+  document.getElementById('subscribeForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = e.target.querySelector('input[type="email"]');
+    const btn = e.target.querySelector('button');
+    const original = btn.textContent;
+    btn.textContent = 'Subscribed ✓';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.disabled = false;
+      input.value = '';
+    }, 2000);
+  });
+
+  // CTA button micro-interaction
+  document.getElementById('startFreeBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('This is a frontend-only demo — connect this button to your signup flow.');
+  });
+
+  // ---- Looping count-up animation for stats (supports multiple sections) ----
+  function animateStat(el) {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1500; // ms to count up
+    const startTime = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const value = target * eased;
+      el.textContent = value.toFixed(decimals) + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function runStatLoop(section) {
+    section.querySelectorAll('.stat-num').forEach(el => {
+      el.textContent = '0' + (el.dataset.suffix || '');
+      animateStat(el);
+    });
+  }
+
+  // Group stat-num elements by their closest section, so each section's
+  // numbers animate independently when scrolled into view.
+  const statSections = new Set();
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const section = el.closest('section');
+    if (section) statSections.add(section);
+  });
+
+  statSections.forEach(section => {
+    let loopInterval = null;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runStatLoop(section);
+          if (!loopInterval) {
+            loopInterval = setInterval(() => runStatLoop(section), 3000); // repeat every 3s
+          }
+        } else if (loopInterval) {
+          clearInterval(loopInterval);
+          loopInterval = null;
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(section);
+  });
+
+
+</script>
+
+</body>
+</html>
